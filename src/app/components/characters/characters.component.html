@@ -1,4 +1,6 @@
-<div *ngFor="let character of listCharacters">
-  <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}" width="400">
-  <h1>{{character.name}}</h1>
+<div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
+  <div *ngFor="let character of listCharacters">
+    <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}" width="400">
+    <h1>{{character.name}}</h1>
+  </div>
 </div>
