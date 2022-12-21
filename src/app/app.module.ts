@@ -11,9 +11,10 @@ import { SpinnerModule } from './components/spinner/spinner.module';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
+import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, CharactersComponent],
+  declarations: [AppComponent, CharactersComponent, HeroDetailComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,6 +1,10 @@
 <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
-  <div *ngFor="let character of listCharacters">
-    <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}" width="400">
-    <h1>{{character.name}}</h1>
+  <div class="p-10" *ngFor="let character of listCharacters">
+    <div class="bg-white rounded-lg shadow-lg w-full p-6 overflow-hidden flex flex-col items-center">
+      <img class="w-full" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}"
+        width="400">
+      <h1 class="text-3xl font-bold p-4">{{character.name}}</h1>
+      <button class="bg-red-600 rounded-r-lg p-2 text-white">Detalles</button>
+    </div>
   </div>
 </div>
