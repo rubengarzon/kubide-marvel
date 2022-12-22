@@ -1,19 +1,16 @@
-<div *ngFor="let item of hero">
-  <h1 class="text-white text-3xl text-center">{{item.name}}</h1>
-  <div class="">
-    <img src="{{item.thumbnail.path}}.{{item.thumbnail.extension}}" alt="">
-    <p>{{item.description}}</p>
+<div class="bg-red-600">
+  <h1 class="text-center text-white text-5xl font-bold cursor-pointer md:text-6xl lg:text-7xl p-5" routerLink="/">
+    MARVEL
+  </h1>
+</div>
+<div *ngFor="let item of hero" class="mb-5">
+  <div class="flex flex-col items-center p-5">
+    <img src="{{item.thumbnail.path}}.{{item.thumbnail.extension}}" alt="" class="object-none h-30 w-80 ...">
+    <h2 class="text-center text-black text-2xl font-bold md:text-3xl lg:text-4xl p-10">{{item.name}}</h2>
+    <p class="mt-5">{{item.description}}</p>
   </div>
-  <h2 class="text-center text-white text-lg">Comics</h2>
-  <div *ngFor="let comic of comics">
+  <h2 class="text-center text-black text-2xl font-bold md:text-3xl lg:text-4xl p-10">Comics</h2>
+  <div *ngFor="let comic of comics" class="flex flex-col items-center">
     <span>{{comic.name}}</span>
-  </div>
-  <h2>Series</h2>
-  <div *ngFor="let serie of series">
-    <span>{{serie.name}}</span>
-  </div>
-  <h2>Stories</h2>
-  <div *ngFor="let story of stories">
-    <span>{{story.name}}</span>
   </div>
 </div>

@@ -5,7 +5,6 @@ import { Character, Result } from 'src/app/interfaces/character.interface';
 import { ApiMarvelService } from 'src/app/services/api-marvel.service';
 import { debounceTime, distinctUntilChanged, filter, map, tap } from 'rxjs';
 import { HeroTeam } from 'src/app/interfaces/heroTeam.interface';
-import { Thumbnail } from '../../interfaces/character.interface';
 
 @Component({
   selector: 'app-characters',
@@ -13,10 +12,12 @@ import { Thumbnail } from '../../interfaces/character.interface';
 })
 export class CharactersComponent implements OnInit {
   listCharacters: Result[] = [];
+  team: HeroTeam[] = [];
   limit: number = 10;
   search = new FormControl('');
   flag: boolean = false;
   counterHero: number = 0;
+  listImg: string[] = [];
 
   constructor(
     private readonly service: ApiMarvelService,
@@ -46,6 +47,10 @@ export class CharactersComponent implements OnInit {
     });
     this.serviceTeam.getTeam().subscribe((data) => {
       this.counterHero = data.length;
+      this.team = data;
+      data.forEach((element) => {
+        this.listImg.push(element.img);
+      });
     });
   }
   /**
@@ -83,5 +88,11 @@ export class CharactersComponent implements OnInit {
           });
       }
     }
+  }
+  getAllHero() {
+    this.service.getAllCharacters(this.limit).subscribe((data: Character) => {
+      this.listCharacters = data.data.results;
+      this.flag = false;
+    });
   }
 }

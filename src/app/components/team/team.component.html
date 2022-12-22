@@ -1,9 +1,38 @@
-<form (ngSubmit)="addInfo()" [formGroup]="infoForm">
-  <input type="text" formControlName="nombre" placeholder="Escribe un nombre.">
-  <textarea formControlName="descripcion" cols="30" rows="10" placeholder="Escribe una descripción."></textarea>
-  <input type="submit" value="Añadir" class="bg-black p-2 text-white">
+<div class="bg-red-600">
+  <h1 class="text-center text-white text-5xl font-bold cursor-pointer md:text-6xl lg:text-7xl p-5" routerLink="/">
+    MARVEL
+  </h1>
+</div>
+
+<h2 class="text-black text-center text-3xl font-bold mb-2 mt-4">MI EQUIPO</h2>
+<div class="flex flex-col items-center mb-10" *ngIf="infoTeam">
+  <div class="flex">
+    <span class="text-xl font-bold">Nombre:</span>
+    <h2 class="ml-2 text-xl">{{infoTeam.nombre}}</h2>
+  </div>
+  <div class="flex">
+    <span class="text-xl font-bold">Descripción:</span>
+    <h2 class="ml-2 text-xl">{{infoTeam.descripcion}}</h2>
+  </div>
+</div>
+<form (ngSubmit)="addInfo()" [formGroup]="infoForm" class="flex flex-col">
+  <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+  <input type="text" formControlName="nombre" placeholder="Escribe un nombre."
+    class="rounded-lg bg-gray-50 border-black">
+  <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
+  <textarea formControlName="descripcion" cols="20" rows="7" placeholder="Escribe una descripción." rounded-lg
+    bg-gray-50></textarea>
+  <input type="submit" value="Añadir" class="bg-black p-2 text-white cursor-pointer">
 </form>
-<div *ngFor="let item of team">
-  <h2>{{item.nombre}}</h2>
-  <button class="bg-black p-2 text-white" (click)="deleteHero(item)">Eliminar</button>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <div class="p-10" *ngFor="let item of team">
+    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden items-center transform transition-all hover:scale-105
+      duration-500 h-full place-content-between flex flex-col">
+      <div class="grid grid-cols-2">
+        <h2 class="text-3xl font-bold p-4 text-center">{{item.nombre}}</h2>
+        <img src="{{item.img}}" width="200" class="mb-2">
+      </div>
+      <button class="bg-black p-2 text-white w-full" (click)="deleteHero(item)">Eliminar</button>
+    </div>
+  </div>
 </div>

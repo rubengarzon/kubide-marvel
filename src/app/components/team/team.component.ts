@@ -7,6 +7,7 @@ import { InfoTeam } from 'src/app/interfaces/infoTeam.interface';
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
+  styleUrls: ['./team.component.sass'],
 })
 export class TeamComponent implements OnInit {
   infoForm!: FormGroup;

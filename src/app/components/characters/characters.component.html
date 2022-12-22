@@ -1,15 +1,54 @@
-<div>
-  <input type="text" placeholder="busca tu heroe favorito.." [formControl]="search">
-  <button class="bg-blue-600 p-2 text-white" routerLink="/equipo">Mi equipo</button>
+<div class="bg-red-600">
+  <h1 class="text-center text-white text-5xl font-bold cursor-pointer md:text-6xl lg:text-7xl p-5" routerLink="/">
+    MARVEL
+  </h1>
 </div>
-<div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
-  <div class="p-10" *ngFor="let character of listCharacters">
-    <div class="bg-white rounded-lg shadow-lg w-full p-6 overflow-hidden flex flex-col items-center">
-      <img class="w-full" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" alt="{{character.name}}"
-        width="400">
-      <h1 class="text-3xl font-bold p-4">{{character.name}}</h1>
-      <button class="bg-red-600 rounded-r-lg p-2 text-white" routerLink="/detalle/{{character.id}}">Detalles</button>
-      <button class="bg-blue-600 rounded-r-lg p-2 text-white" (click)="addHero(character)">Añadir al equipo</button>
+<div class="flex justify-center mb-5 mt-3">
+  <button class="bg-blue-600 p-2 w-34 flex text-white text-center rounded-lg hover:bg-blue-700"
+    routerLink="/equipo"><img src="../../../assets/editar.png" width="17" class="mr-3 mt-1">Equipo</button>
+</div>
+<h2 class="text-center text-black text-3xl font-bold md:text-4xl lg:text-5xl p-10">Mi Equipo</h2>
+<div class="grid grid-cols-1 mb-10 md:grid-cols-2 lg:grid-cols-3">
+  <div class="p-2" *ngFor="let item of team">
+    <div class="rounded-lg w-full flex flex-col items-center p-2 overflow-hidden md:grid grid-cols-2">
+      <img class="rounded-md lg:w-full" src="{{item.img}}" alt="{{item.nombre}}" width="200">
+      <h2 class="text-sm font-bold p-2 place-self-center">{{item.nombre}}</h2>
     </div>
   </div>
+</div>
+<div class="text-center flex place-content-center	">
+  <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+      <svg aria-hidden="true" class="w-5 h-5 text-white dark:text-white" fill="none" stroke="currentColor"
+        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+    </div>
+    <input type="search" [formControl]="search"
+      class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-red-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="busca tu heroe favorito." required>
+  </div>
+  <button class="bg-black p-2 text-white rounded-md ml-2" (click)="getAllHero()">TODOS</button>
+</div>
+<h2 class="text-center text-black text-3xl font-bold md:text-4xl lg:text-5xl p-10 mt-2">HÉROES</h2>
+<div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div class="p-10" *ngFor=" let character of listCharacters">
+      <div
+        class="bg-white rounded-3xl shadow-2xl overflow-hidden items-center transform transition-all hover:scale-105 duration-500 h-full flex flex-col place-content-between">
+        <img class="w-full rounded-xl" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}"
+          alt="{{character.name}}">
+        <h1 class="text-3xl font-bold p-4 text-center">{{character.name}}</h1>
+        <button class="rounded-lg p-2 text-black w-full flex items-center justify-center"
+          routerLink="/detalle/{{character.id}}">Más información
+          <img src="../../../assets/next.png" width="20">
+        </button>
+        <button class="bg-black rounded-lg p-2 text-white w-full mt-2" (click)="addHero(character)">Añadir al
+          equipo</button>
+      </div>
+    </div>
+  </div>
+
 </div>
