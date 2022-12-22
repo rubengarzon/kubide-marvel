@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character, Result } from 'src/app/interfaces/character.interface';
 import { ApiMarvelService } from 'src/app/services/api-marvel.service';
-import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-characters',

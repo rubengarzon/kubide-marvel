@@ -1,1 +1,19 @@
-<p>hero-detail works!</p>
+<div *ngFor="let item of hero">
+  <h1 class="text-white text-3xl text-center">{{item.name}}</h1>
+  <div class="">
+    <img src="{{item.thumbnail.path}}.{{item.thumbnail.extension}}" alt="">
+    <p>{{item.description}}</p>
+  </div>
+  <h2 class="text-center text-white text-lg">Comics</h2>
+  <div *ngFor="let comic of comics">
+    <span>{{comic.name}}</span>
+  </div>
+  <h2>Series</h2>
+  <div *ngFor="let serie of series">
+    <span>{{serie.name}}</span>
+  </div>
+  <h2>Stories</h2>
+  <div *ngFor="let story of stories">
+    <span>{{story.name}}</span>
+  </div>
+</div>
