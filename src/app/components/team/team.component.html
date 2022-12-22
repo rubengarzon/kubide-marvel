@@ -1,1 +1,4 @@
-<p>team works!</p>
+<div *ngFor="let item of team">
+  <h2>{{item.nombre}}</h2>
+  <button class="bg-black p-2 text-white" (click)="deleteHero(item)">Eliminar</button>
+</div>

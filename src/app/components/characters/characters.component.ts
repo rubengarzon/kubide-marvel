@@ -10,13 +10,13 @@ import { Thumbnail } from '../../interfaces/character.interface';
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.sass'],
 })
 export class CharactersComponent implements OnInit {
   listCharacters: Result[] = [];
   limit: number = 10;
   search = new FormControl('');
   flag: boolean = false;
+  counterHero: number = 0;
 
   constructor(
     private readonly service: ApiMarvelService,
@@ -44,24 +44,31 @@ export class CharactersComponent implements OnInit {
       this.listCharacters = data.data.results;
       this.flag = false;
     });
+    this.serviceTeam.getTeam().subscribe((data) => {
+      this.counterHero = data.length;
+    });
   }
   /**
    * Añadir Heroe al equipo
    * @param hero
    */
   addHero(hero: Result) {
-    const { id, name, thumbnail } = hero;
+    if (this.counterHero < 6) {
+      const { id, name, thumbnail } = hero;
 
-    const myHero: HeroTeam = {
-      id: id.toString(),
-      nombre: name,
-      img: thumbnail.path + thumbnail.extension,
-    };
-    this.serviceTeam.addHero(myHero).then((hero) => {
-      if (hero) {
-        alert('Heroe añadido al equipo');
-      }
-    });
+      const myHero: HeroTeam = {
+        id: id.toString(),
+        nombre: name,
+        img: thumbnail.path + '.' + thumbnail.extension,
+      };
+      this.serviceTeam.addHero(myHero).then((hero) => {
+        if (hero) {
+          alert('Heroe añadido al equipo');
+        }
+      });
+    } else {
+      alert('Como máximo puedes tener 6 héroes en tu equipo');
+    }
   }
 
   onScroll(): void {

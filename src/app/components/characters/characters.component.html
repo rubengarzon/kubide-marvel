@@ -1,6 +1,6 @@
 <div>
   <input type="text" placeholder="busca tu heroe favorito.." [formControl]="search">
-  <button class="bg-blue-600 p-2 text-white">Mi equipo</button>
+  <button class="bg-blue-600 p-2 text-white" routerLink="/equipo">Mi equipo</button>
 </div>
 <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
   <div class="p-10" *ngFor="let character of listCharacters">

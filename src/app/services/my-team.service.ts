@@ -31,13 +31,19 @@ export class MyTeamService {
     return collectionData(teamRef, { idField: 'id' }) as Observable<HeroTeam[]>;
   }
 
-  /* deleteHero(hero: HeroTeam) {
+  deleteHero(hero: HeroTeam) {
     let docRef = doc(this.firebase, `Team/${hero.id}`);
     return deleteDoc(docRef);
-  } */
+  }
+  /**
+   * 
+   */
+  addInfoTeam(){
 
-  updateHero(hero: HeroTeam, team: any) {
+  }
+
+/*   updateHero(hero: HeroTeam, team: any) {
     let docRef = doc(this.firebase, `Team/${hero.id}`);
     return updateDoc(docRef, team);
-  }
+  } */
 }
