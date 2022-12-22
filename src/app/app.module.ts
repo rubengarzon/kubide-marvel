@@ -13,9 +13,19 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TeamComponent } from './components/team/team.component';
+
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
-  declarations: [AppComponent, CharactersComponent, HeroDetailComponent],
+  declarations: [
+    AppComponent,
+    CharactersComponent,
+    HeroDetailComponent,
+    TeamComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     InfiniteScrollModule,
     SpinnerModule,
     ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
