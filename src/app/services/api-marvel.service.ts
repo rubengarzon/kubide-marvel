@@ -8,6 +8,8 @@ import { HeroDetail } from '../interfaces/heroDetail.interface';
   providedIn: 'root',
 })
 export class ApiMarvelService {
+  resultSearch: any[] = [];
+
   constructor(private readonly http: HttpClient) {}
   /**
    * Devuelve un numero limitado de heroes
@@ -27,6 +29,12 @@ export class ApiMarvelService {
   getHero(id: string | null): Observable<HeroDetail> {
     return this.http.get<HeroDetail>(
       `https://gateway.marvel.com:443/v1/public/characters/${id}?ts=1&apikey=dfed52e894e7b99d5fd238f50152e6d9&hash=c757d71c899b6e392d04b2b5dc6d7e1a`
+    );
+  }
+
+  searchHeroByName(name: string | undefined): Observable<any> {
+    return this.http.get<any>(
+      `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${name}&ts=1&apikey=dfed52e894e7b99d5fd238f50152e6d9&hash=c757d71c899b6e392d04b2b5dc6d7e1a`
     );
   }
 }

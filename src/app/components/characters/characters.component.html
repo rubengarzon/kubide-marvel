@@ -1,3 +1,6 @@
+<div>
+  <input type="text" placeholder="busca tu heroe favorito.." [formControl]="search">
+</div>
 <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="150" (scrolled)="onScroll()">
   <div class="p-10" *ngFor="let character of listCharacters">
     <div class="bg-white rounded-lg shadow-lg w-full p-6 overflow-hidden flex flex-col items-center">

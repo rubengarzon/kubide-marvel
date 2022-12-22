@@ -12,6 +12,7 @@ import { SpinnerModule } from './components/spinner/spinner.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, CharactersComponent, HeroDetailComponent],
@@ -21,6 +22,7 @@ import { HeroDetailComponent } from './components/hero-detail/hero-detail.compon
     HttpClientModule,
     InfiniteScrollModule,
     SpinnerModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
